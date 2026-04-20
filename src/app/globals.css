@@ -198,7 +198,7 @@ a {
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.03);
   box-shadow: var(--shadow-glow-intense);
 }
 
@@ -229,8 +229,8 @@ a {
 .glass-card:hover {
   background: var(--bg-card-hover);
   border-color: var(--border-accent);
-  box-shadow: var(--shadow-glow);
-  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow-intense);
+  transform: translateY(-6px) scale(1.01);
 }
 
 /* ========== Badge ========== */
