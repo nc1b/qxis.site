@@ -6,24 +6,24 @@ import styles from "./Contact.module.css";
 const socials = [
   {
     name: "Discord",
-    handle: "@qxis",
-    icon: <img src="/images/emojis/bot.svg" alt="Discord" width={24} height={24} />,
-    link: "#",
+    handle: "597419454665588746",
+    icon: <span className="emoji" style={{ fontSize: '1.5rem' }}>💬</span>,
+    link: "https://discord.com/users/597419454665588746",
     color: "#5865F2"
   },
   {
     name: "GitHub",
     handle: "@nc1b",
-    icon: <img src="/images/emojis/code.svg" alt="GitHub" width={24} height={24} />,
+    icon: <span className="emoji" style={{ fontSize: '1.5rem' }}>💻</span>,
     link: "https://github.com/nc1b",
-    color: "#333"
+    color: "#3b82f6"
   },
   {
     name: "Email",
     handle: "contact@qxis.site",
-    icon: <img src="/images/emojis/lightning.svg" alt="Email" width={24} height={24} />,
+    icon: <span className="emoji" style={{ fontSize: '1.5rem' }}>✉️</span>,
     link: "mailto:contact@qxis.site",
-    color: "#d97228"
+    color: "#8b5cf6"
   },
 ];
 
@@ -46,7 +46,7 @@ export default function Contact() {
         style={{
           width: "800px",
           height: "800px",
-          background: "radial-gradient(circle, rgba(217,114,40,0.15) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 60%)",
           bottom: "-30%",
           left: "50%",
           transform: "translateX(-50%)",
@@ -79,6 +79,8 @@ export default function Contact() {
                 <motion.a
                   key={social.name}
                   href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`glass-card ${styles.socialCard}`}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +88,7 @@ export default function Contact() {
                   transition={{ delay: 0.2 + i * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
                 >
-                  <div className={styles.socialIcon} style={{ background: `${social.color}20` }}>
+                  <div className={styles.socialIcon} style={{ background: `${social.color}20`, color: social.color }}>
                     {social.icon}
                   </div>
                   <div className={styles.socialText}>
@@ -138,7 +140,7 @@ export default function Contact() {
                 >
                   {formState === "idle" && (
                     <>
-                      <img src="/images/emojis/rocket.svg" alt="" width={18} height={18} />
+                      <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '8px' }}>🚀</span>
                       Send Message
                     </>
                   )}

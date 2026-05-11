@@ -4,21 +4,21 @@ import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Skills.module.css";
 
 const techStack = [
-  { name: "Python", emoji: "/images/emojis/code.svg" },
-  { name: "JavaScript", emoji: "/images/emojis/lightning.svg" },
-  { name: "React / Next.js", emoji: "/images/emojis/globe.svg" },
-  { name: "Node.js", emoji: "/images/emojis/server.svg" },
-  { name: "MongoDB", emoji: "/images/emojis/wrench.svg" },
-  { name: "Discord.py", emoji: "/images/emojis/bot.svg" },
-  { name: "Lua", emoji: "/images/emojis/star.svg" },
-  { name: "Git", emoji: "/images/emojis/shield.svg" },
+  { name: "Python", emoji: "💻" },
+  { name: "JavaScript", emoji: "⚡" },
+  { name: "React / Next.js", emoji: "🌐" },
+  { name: "Node.js", emoji: "🖥️" },
+  { name: "MongoDB", emoji: "🗄️" },
+  { name: "Discord.py", emoji: "🤖" },
+  { name: "Lua", emoji: "⭐" },
+  { name: "Git", emoji: "🛡️" },
 ];
 
 const codeSnippets = [
   {
     title: "economy.py",
     label: "Economy System",
-    emoji: "/images/emojis/lightning.svg",
+    emoji: "⚡",
     code: `import discord
 from discord import app_commands
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -43,7 +43,7 @@ class Economy(commands.Cog):
 
         embed = discord.Embed(
             title="💰 Your Balance",
-            color=0xD97228
+            color=0x3B82F6
         )
         embed.add_field(
             name="Wallet", value=f"$\{wallet:,}"
@@ -58,7 +58,7 @@ class Economy(commands.Cog):
   {
     title: "erlcmod.py",
     label: "ERLC Moderation",
-    emoji: "/images/emojis/shield.svg",
+    emoji: "🛡️",
     code: `import aiohttp
 from datetime import datetime
 
@@ -97,7 +97,7 @@ class ERLCModeration(commands.Cog):
   {
     title: "altcentral.py",
     label: "Alt Central",
-    emoji: "/images/emojis/rocket.svg",
+    emoji: "🚀",
     code: `import robloxapi
 import asyncio
 from concurrent.futures import ThreadPoolExecutor
@@ -149,7 +149,7 @@ export default function Skills() {
         style={{
           width: "600px",
           height: "600px",
-          background: "radial-gradient(circle, rgba(217,114,40,0.12) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 60%)",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
@@ -165,7 +165,7 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
         >
           <span className="badge">
-            <img src="/images/emojis/fire.svg" alt="" width={16} height={16} style={{ marginRight: "4px" }} />
+            <span className="emoji" style={{ fontSize: '1rem', marginRight: '4px' }}>🔥</span>
             Elite Arsenal
           </span>
           <h2>
@@ -189,7 +189,7 @@ export default function Skills() {
             <div className={styles.marqueeTrack}>
               {[...techStack, ...techStack, ...techStack].map((tech, i) => (
                 <div key={i} className={styles.marqueeItem}>
-                  <img src={tech.emoji} alt="" width={18} height={18} className={styles.marqueeEmoji} />
+                  <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>{tech.emoji}</span>
                   <span>{tech.name}</span>
                 </div>
               ))}
@@ -220,7 +220,7 @@ export default function Skills() {
                     className={`${styles.tab} ${activeTab === i ? styles.tabActive : ""}`}
                     onClick={() => setActiveTab(i)}
                   >
-                    <img src={snippet.emoji} alt="" width={14} height={14} />
+                    <span className="emoji" style={{ fontSize: '1rem' }}>{snippet.emoji}</span>
                     {snippet.title}
                     {activeTab === i && (
                       <motion.div
@@ -266,27 +266,15 @@ export default function Skills() {
 }
 
 function syntaxHighlight(line) {
-  // Enhanced Python syntax highlighter
   let processed = line;
-
-  // Comments
   processed = processed.replace(/(#.*)$/, '<span class="cm">$1</span>');
-  // Decorators
   processed = processed.replace(/(@\w+(?:\.\w+)*)/g, '<span class="dec">$1</span>');
-  // Strings
   processed = processed.replace(/(f?"[^"]*"|f?'[^']*'|"""[\s\S]*?""")/g, '<span class="str">$1</span>');
-  // Keywords
   processed = processed.replace(/\b(import|from|class|def|async|await|return|for|if|in|not|and|or|with|as|self|isinstance)\b/g, '<span class="kw">$1</span>');
-  // Built-in
   processed = processed.replace(/\b(True|False|None)\b/g, '<span class="bi">$1</span>');
-  // Function definitions
   processed = processed.replace(/def\s+(\w+)/g, 'def <span class="fn-def">$1</span>');
-  // Class definitions
   processed = processed.replace(/class\s+(\w+)/g, 'class <span class="class-def">$1</span>');
-  // Numbers
   processed = processed.replace(/\b(\d+)\b/g, '<span class="num">$1</span>');
-  // Function calls
   processed = processed.replace(/(\w+)\(/g, '<span class="fn">$1</span>(');
-
   return <span dangerouslySetInnerHTML={{ __html: processed }} />;
 }

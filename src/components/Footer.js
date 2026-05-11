@@ -61,14 +61,14 @@ export default function Footer() {
           >
             <span className={styles.colTitle}>Connect</span>
             <div className={styles.socialRow}>
-              <a href="#" className={styles.socialBtn} aria-label="Discord">
-                <img src="/images/emojis/bot.svg" alt="Discord" width={20} height={20} />
+              <a href="https://discord.com/users/597419454665588746" target="_blank" rel="noopener noreferrer" className={styles.socialBtn} aria-label="Discord">
+                <span className="emoji" style={{ fontSize: '1.2rem' }}>💬</span>
               </a>
               <a href="https://github.com/nc1b" target="_blank" rel="noopener noreferrer" className={styles.socialBtn} aria-label="GitHub">
-                <img src="/images/emojis/code.svg" alt="GitHub" width={20} height={20} />
+                <span className="emoji" style={{ fontSize: '1.2rem' }}>💻</span>
               </a>
               <a href="mailto:contact@qxis.site" className={styles.socialBtn} aria-label="Email">
-                <img src="/images/emojis/lightning.svg" alt="Email" width={20} height={20} />
+                <span className="emoji" style={{ fontSize: '1.2rem' }}>✉️</span>
               </a>
             </div>
           </motion.div>
@@ -88,7 +88,7 @@ export default function Footer() {
             </button>
             
             <span className={styles.credit}>
-              <img src="/images/emojis/fire.svg" alt="" width={14} height={14} style={{ marginRight: "6px" }} />
+              <span className="emoji" style={{ fontSize: '1rem', marginRight: '6px' }}>🔥</span>
               Crafted with precision
             </span>
           </div>

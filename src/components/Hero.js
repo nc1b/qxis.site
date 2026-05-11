@@ -53,7 +53,7 @@ export default function Hero() {
         style={{
           width: "700px",
           height: "700px",
-          background: "radial-gradient(circle, rgba(217,114,40,0.2) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(59,130,246,0.2) 0%, transparent 60%)",
           top: "-20%",
           right: "-10%",
           animation: "pulse-glow 8s ease-in-out infinite",
@@ -69,7 +69,7 @@ export default function Hero() {
         style={{
           width: "500px",
           height: "500px",
-          background: "radial-gradient(circle, rgba(131,56,29,0.2) 0%, transparent 60%)",
+          background: "radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 60%)",
           bottom: "0%",
           left: "-10%",
           animation: "pulse-glow 10s ease-in-out infinite 2s",
@@ -129,12 +129,12 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1 }}
           >
             <a href="#projects" className="btn btn-primary" style={{ padding: '1rem 2.5rem' }}>
-              <img src="/images/emojis/rocket.svg" alt="" width={20} height={20} className={styles.btnEmoji} />
-              View My Work
+              <span className="emoji" style={{ fontSize: '1.2rem' }}>🚀</span>
+              <span style={{ marginLeft: '8px' }}>View My Work</span>
             </a>
             <a href="#about" className="btn btn-secondary" style={{ padding: '1rem 2.5rem' }}>
-              Learn More
-              <img src="/images/emojis/lightning.svg" alt="" width={18} height={18} className={styles.btnEmoji} />
+              <span>Learn More</span>
+              <span className="emoji" style={{ fontSize: '1.2rem', marginLeft: '8px' }}>⚡</span>
             </a>
           </motion.div>
 
@@ -201,7 +201,7 @@ export default function Hero() {
               }}
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
             >
-              <img src="/images/emojis/star.svg" alt="" width={18} height={18} className={styles.tagEmoji} />
+              <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>⭐</span>
               ERLC Alter
             </motion.div>
             
@@ -214,7 +214,7 @@ export default function Hero() {
               }}
               transition={{ y: { duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 } }}
             >
-              <img src="/images/emojis/code.svg" alt="" width={18} height={18} className={styles.tagEmoji} />
+              <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>💻</span>
               Full Stack Dev
             </motion.div>
             
@@ -227,7 +227,7 @@ export default function Hero() {
               }}
               transition={{ y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 } }}
             >
-              <img src="/images/emojis/shield.svg" alt="" width={18} height={18} className={styles.tagEmoji} />
+              <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>🛡️</span>
               Server Mgr
             </motion.div>
           </motion.div>

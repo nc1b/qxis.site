@@ -5,22 +5,22 @@ import styles from "./About.module.css";
 
 const highlights = [
   {
-    emoji: "/images/emojis/star.svg",
+    emoji: "⭐",
     title: "ERLC Alter",
     desc: "Specialist in ERLC server alting — botting in-game servers to fill them to max capacity. Driving player counts up and keeping servers packed with active users around the clock.",
-    gradient: "linear-gradient(135deg, rgba(217,114,40,0.1), rgba(245,166,35,0.05))"
+    gradient: "linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.05))"
   },
   {
-    emoji: "/images/emojis/monitor.svg",
+    emoji: "🖥️",
     title: "Server Manager",
     desc: "Skilled in managing large-scale Roblox and Discord communities — building staff teams, robust moderation systems, and engaging player experiences.",
-    gradient: "linear-gradient(135deg, rgba(226,141,79,0.1), rgba(217,114,40,0.05))"
+    gradient: "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.05))"
   },
   {
-    emoji: "/images/emojis/code.svg",
+    emoji: "💻",
     title: "Full Stack Developer",
     desc: "Building modern web and bot applications with Next.js, React, Node.js, Python, and MongoDB — from stunning frontend polish to backend power.",
-    gradient: "linear-gradient(135deg, rgba(245,166,35,0.1), rgba(204,122,10,0.05))"
+    gradient: "linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.05))"
   },
 ];
 
@@ -41,7 +41,7 @@ const Card = ({ highlight, index }) => {
       <div className={styles.cardIconWrap}>
         <div className={styles.cardIconGlow} />
         <div className={styles.cardIcon}>
-          <img src={highlight.emoji} alt="" width={32} height={32} />
+          <span className="emoji" style={{ fontSize: '1.8rem' }}>{highlight.emoji}</span>
         </div>
       </div>
       <h3>{highlight.title}</h3>
@@ -67,7 +67,7 @@ export default function About() {
         style={{
           width: "800px",
           height: "800px",
-          background: "radial-gradient(circle, rgba(217,114,40,0.05) 0%, transparent 50%)",
+          background: "radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 50%)",
           top: "30%",
           left: "-20%",
           y
