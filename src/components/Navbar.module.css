@@ -1,0 +1,226 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: calc(var(--nav-height) + 20px);
+  display: flex;
+  align-items: center;
+  transition: all var(--transition-slow);
+  padding: 0 clamp(1rem, 4vw, 2rem);
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.navbar.scrolled {
+  height: var(--nav-height);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  pointer-events: auto; /* Re-enable clicks for the content */
+  background: transparent;
+  transition: all var(--transition-medium);
+}
+
+.scrolled .inner {
+  background: rgba(18, 14, 11, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--glass-border);
+  border-radius: 100px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 0 20px rgba(217, 114, 40, 0.05);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  z-index: 10;
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logoImg {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 0 15px rgba(217, 114, 40, 0.3);
+}
+
+.logoText {
+  font-family: 'Outfit', sans-serif;
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.navContainer {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: rgba(26, 20, 16, 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  padding: 0.3rem;
+  border-radius: 100px;
+  transition: all var(--transition-medium);
+}
+
+.scrolled .links {
+  background: transparent;
+  border-color: transparent;
+  padding: 0;
+}
+
+.link {
+  position: relative;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  text-decoration: none;
+  border-radius: 100px;
+  transition: color var(--transition-fast);
+  z-index: 1;
+}
+
+.link:hover {
+  color: var(--text-primary);
+}
+
+.link.active {
+  color: var(--text-primary);
+}
+
+.linkLabel {
+  position: relative;
+  z-index: 2;
+}
+
+.activeIndicator {
+  position: absolute;
+  inset: 0;
+  background: rgba(217, 114, 40, 0.15);
+  border: 1px solid rgba(217, 114, 40, 0.3);
+  border-radius: 100px;
+  z-index: 0;
+  box-shadow: 0 0 20px rgba(217, 114, 40, 0.1);
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(26, 20, 16, 0.6);
+  border: 1px solid var(--glass-border);
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 12px;
+  z-index: 1001;
+  transition: all var(--transition-fast);
+}
+
+.hamburger:hover {
+  background: rgba(36, 28, 22, 0.8);
+}
+
+.hamburger span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mobileMenu {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: rgba(10, 7, 6, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileLinks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.mobileLink {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  position: relative;
+}
+
+.mobileLink:hover {
+  color: var(--text-primary);
+  transform: scale(1.1);
+}
+
+@media (max-width: 900px) {
+  .navContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .navActions .btn {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+  
+  .navbar {
+    padding: 0 1.5rem;
+  }
+}
