@@ -1,8 +1,31 @@
 "use client";
-import { useEffect, useState } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import styles from "./Hero.module.css";
+
+// Bettina Sosa Physics Falling Character
+const FallingChar = ({ children, progress, index }) => {
+  // Pseudo-random properties tied to index for deterministic render
+  const random = Math.abs(Math.sin(index * 12.9898));
+  const randomSign = Math.sin(index * 78.233) > 0 ? 1 : -1;
+  
+  const yTarget = 150 + (random * 600); // How far it falls
+  const xTarget = (random * 300) * randomSign; // How far it scatters left/right
+  const rotateTarget = 45 + (random * 300) * randomSign; // Rotation amount
+
+  // Animate from scroll progress 0.1 to 0.6
+  const y = useTransform(progress, [0.05, 0.6], [0, yTarget]);
+  const x = useTransform(progress, [0.05, 0.6], [0, xTarget]);
+  const rotate = useTransform(progress, [0.05, 0.6], [0, rotateTarget]);
+  const opacity = useTransform(progress, [0.3, 0.6], [1, 0]); // Fade out eventually
+
+  return (
+    <motion.span style={{ y, x, rotate, opacity, display: 'inline-block', whiteSpace: 'pre' }}>
+      {children}
+    </motion.span>
+  );
+};
 
 // Animated typing text component
 const Typewriter = ({ text, delay = 0 }) => {
@@ -28,19 +51,29 @@ const Typewriter = ({ text, delay = 0 }) => {
 
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const heroRef = useRef(null);
+  
+  // Track scroll position for physics falling text
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
 
   const handleMouseMove = (e) => {
-    // Calculate mouse position relative to center of screen, from -1 to 1
     const x = (e.clientX / window.innerWidth) * 2 - 1;
     const y = (e.clientY / window.innerHeight) * 2 - 1;
     setMousePos({ x, y });
   };
+
+  const line1 = "Building Digital".split("");
+  const line3 = "That Matter".split("");
 
   return (
     <section 
       id="home" 
       className={styles.hero} 
       onMouseMove={handleMouseMove}
+      ref={heroRef}
     >
       {/* Background orbs */}
       <motion.div
@@ -104,12 +137,27 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+            style={{ position: 'relative', zIndex: 20 }}
           >
-            Building Digital
-            <br />
+            {/* Physics falling text on line 1 */}
+            <div>
+              {line1.map((char, i) => (
+                <FallingChar key={`l1-${i}`} progress={scrollYProgress} index={i}>
+                  {char}
+                </FallingChar>
+              ))}
+            </div>
+            
             <Typewriter text="Experiences" delay={0.6} />
-            <br />
-            That Matter
+            
+            {/* Physics falling text on line 3 */}
+            <div>
+              {line3.map((char, i) => (
+                <FallingChar key={`l3-${i}`} progress={scrollYProgress} index={i + 100}>
+                  {char}
+                </FallingChar>
+              ))}
+            </div>
           </motion.h1>
 
           <motion.p

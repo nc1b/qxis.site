@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import styles from "./Contact.module.css";
 
 const socials = [
@@ -27,8 +27,42 @@ const socials = [
   },
 ];
 
+// Bettina Sosa Scroll Reveal Word
+const Word = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  return (
+    <motion.span style={{ opacity, display: 'inline-block' }}>
+      {children}
+    </motion.span>
+  );
+};
+
+const ScrollRevealText = ({ text }) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 90%", "end 60%"]
+  });
+
+  const words = text.split(" ");
+  
+  return (
+    <p 
+      className={styles.desc} 
+      ref={containerRef} 
+      style={{ display: 'flex', flexWrap: 'wrap', columnGap: '0.25em', rowGap: '0.1em' }}
+    >
+      {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + (1 / words.length);
+        return <Word key={i} progress={scrollYProgress} range={[start, end]}>{word}</Word>;
+      })}
+    </p>
+  );
+};
+
 export default function Contact() {
-  const [formState, setFormState] = useState("idle"); // idle, submitting, success
+  const [formState, setFormState] = useState("idle");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,9 +104,9 @@ export default function Contact() {
             <h2 className={styles.heading}>
               Let&apos;s Build Something <span className="gradient-text">Incredible</span>
             </h2>
-            <p className={styles.desc}>
-              Looking for a top-tier ERLC alter, an expert community manager, or a full-stack engineering partner? Let's connect and elevate your project.
-            </p>
+            
+            {/* Scroll Reveal Text */}
+            <ScrollRevealText text="Looking for a top-tier ERLC alter, an expert community manager, or a full-stack engineering partner? Let's connect and elevate your project." />
 
             <div className={styles.socialsGrid}>
               {socials.map((social, i) => (

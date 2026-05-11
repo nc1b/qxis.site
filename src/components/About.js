@@ -51,6 +51,40 @@ const Card = ({ highlight, index }) => {
   );
 };
 
+// Scroll Reveal Word Component (Bettina Sosa Effect)
+const Word = ({ children, progress, range }) => {
+  const opacity = useTransform(progress, range, [0.15, 1]);
+  return (
+    <motion.span style={{ opacity, display: 'inline-block' }}>
+      {children}
+    </motion.span>
+  );
+};
+
+const ScrollRevealText = ({ text }) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 90%", "end 50%"]
+  });
+
+  const words = text.split(" ");
+  
+  return (
+    <p 
+      className={styles.sectionDesc} 
+      ref={containerRef} 
+      style={{ display: 'flex', flexWrap: 'wrap', columnGap: '0.25em', rowGap: '0.1em' }}
+    >
+      {words.map((word, i) => {
+        const start = i / words.length;
+        const end = start + (1 / words.length);
+        return <Word key={i} progress={scrollYProgress} range={[start, end]}>{word}</Word>;
+      })}
+    </p>
+  );
+};
+
 export default function About() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -92,12 +126,9 @@ export default function About() {
               <br />
               From Vision to Reality
             </h2>
-            <p className={styles.sectionDesc}>
-              I&apos;m passionate about blending creativity with high-performance technology. 
-              Whether it&apos;s transforming an ERLC server into an immersive, max-capacity experience,
-              managing a thriving community of thousands, or engineering scalable full-stack solutions —
-              I bring dedication, precision, and elite expertise to every single project.
-            </p>
+            
+            {/* Applied Bettina Sosa Scroll Reveal Effect */}
+            <ScrollRevealText text="I'm passionate about blending creativity with high-performance technology. Whether it's transforming an ERLC server into an immersive, max-capacity experience, managing a thriving community of thousands, or engineering scalable full-stack solutions — I bring dedication, precision, and elite expertise to every single project." />
             
             <div className={styles.experienceLine}>
               <div className={styles.expItem}>
