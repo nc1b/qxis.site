@@ -19,21 +19,21 @@ const projects = [
     tags: ["Python", "Discord.py", "MongoDB", "APIs"],
     color: "#8b5cf6",
     emoji: "🤖",
-    link: "#",
+    link: "https://discord.gg/E2ZhncGBNM", // UPDATED LINK
     metrics: "50+ Servers"
   },
   {
     title: "ERLC Moderation System",
-    description: "Advanced AI-powered moderation system for ERLC servers with automated detection of RDM, VDM, and safezone violations. Real-time monitoring and visual reports.",
-    tags: ["AI/ML", "Computer Vision", "Python", "PRC API"],
+    description: "Advanced moderation system for ERLC servers with automated detection of RDM, VDM, and safezone violations. Real-time monitoring and logging.",
+    tags: ["Computer Vision", "Python", "PRC API"],
     color: "#06b6d4",
     emoji: "🛡️",
     link: "#",
     metrics: "99% Accuracy"
   },
   {
-    title: "Web Portfolio & Platforms",
-    description: "Modern web platforms and portfolio sites built with Next.js, featuring stunning animations, responsive design, and premium aesthetics for clients and personal use.",
+    title: "Web Platforms",
+    description: "Modern web platforms and portfolio sites built with Next.js, featuring responsive design, high performance, and smooth animations.",
     tags: ["Next.js", "React", "CSS", "Framer Motion"],
     color: "#6366f1",
     emoji: "🌐",
@@ -42,7 +42,7 @@ const projects = [
   },
   {
     title: "Server Infrastructure",
-    description: "End-to-end VPS management, deployment pipelines, database architecture, and server configuration for production-grade Discord bots and web applications.",
+    description: "End-to-end VPS management, deployment pipelines, database architecture, and server configuration for production-grade applications.",
     tags: ["Linux", "VPS", "MongoDB", "DevOps"],
     color: "#2563eb",
     emoji: "🖧",
@@ -51,8 +51,8 @@ const projects = [
   },
   {
     title: "CAD/MDT Systems",
-    description: "Custom CAD and MDT systems for ERLC roleplay servers — dispatch management, unit tracking, and records systems built for realistic law enforcement RP.",
-    tags: ["Full Stack", "Real-time", "WebSockets", "UI/UX"],
+    description: "Custom CAD and MDT systems for ERLC roleplay servers — dispatch management, unit tracking, and records systems built for law enforcement roleplay.",
+    tags: ["Full Stack", "Real-time", "WebSockets"],
     color: "#1e40af",
     emoji: "📻",
     link: "#",
@@ -159,15 +159,13 @@ export default function Projects() {
           transition={{ duration: 0.6 }}
         >
           <span className="badge">
-            <span className="emoji" style={{ fontSize: '1rem', marginRight: '4px' }}>🚀</span>
-            Featured Work
+            Selected Work
           </span>
           <h2>
             Projects I&apos;ve <span className="gradient-text">Built</span>
           </h2>
           <p className={styles.sectionDesc}>
-            A selection of high-impact projects showcasing my expertise across ERLC development,
-            server infrastructure, and full stack engineering.
+            Recent work spanning Discord bot development, community moderation tools, and web infrastructure.
           </p>
         </motion.div>
 

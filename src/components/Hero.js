@@ -1,27 +1,25 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
 // Bettina Sosa Physics Falling Character
 const FallingChar = ({ children, progress, index }) => {
-  // Pseudo-random properties tied to index for deterministic render
   const random = Math.abs(Math.sin(index * 12.9898));
   const randomSign = Math.sin(index * 78.233) > 0 ? 1 : -1;
   
-  const yTarget = 150 + (random * 600); // How far it falls
-  const xTarget = (random * 300) * randomSign; // How far it scatters left/right
-  const rotateTarget = 45 + (random * 300) * randomSign; // Rotation amount
+  const yTarget = 150 + (random * 600);
+  const xTarget = (random * 300) * randomSign;
+  const rotateTarget = 45 + (random * 300) * randomSign;
 
-  // Animate from scroll progress 0.1 to 0.6
   const y = useTransform(progress, [0.05, 0.6], [0, yTarget]);
   const x = useTransform(progress, [0.05, 0.6], [0, xTarget]);
   const rotate = useTransform(progress, [0.05, 0.6], [0, rotateTarget]);
-  const opacity = useTransform(progress, [0.3, 0.6], [1, 0]); // Fade out eventually
+  const opacity = useTransform(progress, [0.3, 0.6], [1, 0]);
 
   return (
-    <motion.span style={{ y, x, rotate, opacity, display: 'inline-block', whiteSpace: 'pre' }}>
+    <motion.span style={{ y, x, rotate, opacity, display: 'inline-block' }}>
       {children}
     </motion.span>
   );
@@ -49,11 +47,22 @@ const Typewriter = ({ text, delay = 0 }) => {
   );
 };
 
+const FallingWord = ({ word, baseIndex, progress }) => {
+  return (
+    <span style={{ display: 'inline-block', whiteSpace: 'nowrap' }}>
+      {word.split("").map((char, i) => (
+        <FallingChar key={i} progress={progress} index={baseIndex + i}>
+          {char}
+        </FallingChar>
+      ))}
+    </span>
+  );
+};
+
 export default function Hero() {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const heroRef = useRef(null);
   
-  // Track scroll position for physics falling text
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -65,8 +74,8 @@ export default function Hero() {
     setMousePos({ x, y });
   };
 
-  const line1 = "Building Digital".split("");
-  const line3 = "That Matter".split("");
+  const line1Words = "Software".split(" ");
+  const line3Words = "& Community Manager".split(" ");
 
   return (
     <section 
@@ -75,7 +84,6 @@ export default function Hero() {
       onMouseMove={handleMouseMove}
       ref={heroRef}
     >
-      {/* Background orbs */}
       <motion.div
         className="glow-orb"
         animate={{
@@ -109,7 +117,6 @@ export default function Hero() {
         }}
       />
 
-      {/* Subtle grid with parallax */}
       <motion.div 
         className={styles.gridOverlay}
         animate={{
@@ -128,7 +135,7 @@ export default function Hero() {
           >
             <div className="badge" style={{ padding: '0.4rem 1rem' }}>
               <span className={styles.statusDot} />
-              <span style={{ fontWeight: 600 }}>Available for new projects</span>
+              <span style={{ fontWeight: 600 }}>Available for work</span>
             </div>
           </motion.div>
 
@@ -139,23 +146,17 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
             style={{ position: 'relative', zIndex: 20 }}
           >
-            {/* Physics falling text on line 1 */}
-            <div>
-              {line1.map((char, i) => (
-                <FallingChar key={`l1-${i}`} progress={scrollYProgress} index={i}>
-                  {char}
-                </FallingChar>
+            <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: '0.3em' }}>
+              {line1Words.map((word, wIdx) => (
+                <FallingWord key={wIdx} word={word} baseIndex={wIdx * 10} progress={scrollYProgress} />
               ))}
             </div>
             
-            <Typewriter text="Experiences" delay={0.6} />
+            <Typewriter text="Engineer" delay={0.6} />
             
-            {/* Physics falling text on line 3 */}
-            <div>
-              {line3.map((char, i) => (
-                <FallingChar key={`l3-${i}`} progress={scrollYProgress} index={i + 100}>
-                  {char}
-                </FallingChar>
+            <div style={{ display: 'flex', flexWrap: 'wrap', columnGap: '0.3em' }}>
+              {line3Words.map((word, wIdx) => (
+                <FallingWord key={wIdx} word={word} baseIndex={100 + (wIdx * 10)} progress={scrollYProgress} />
               ))}
             </div>
           </motion.h1>
@@ -166,8 +167,7 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.8 }}
           >
-            <strong>ERLC Alter • Server Manager • Full Stack Developer</strong><br/> 
-            I bot servers to max capacity, manage thriving communities, and engineer powerful tools that elevate operations.
+            Specializing in Roblox community infrastructure, automated moderation systems, and scalable web applications.
           </motion.p>
 
           <motion.div
@@ -177,12 +177,10 @@ export default function Hero() {
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1 }}
           >
             <a href="#projects" className="btn btn-primary" style={{ padding: '1rem 2.5rem' }}>
-              <span className="emoji" style={{ fontSize: '1.2rem' }}>🚀</span>
-              <span style={{ marginLeft: '8px' }}>View My Work</span>
+              <span style={{ marginLeft: '8px' }}>View Projects</span>
             </a>
-            <a href="#about" className="btn btn-secondary" style={{ padding: '1rem 2.5rem' }}>
-              <span>Learn More</span>
-              <span className="emoji" style={{ fontSize: '1.2rem', marginLeft: '8px' }}>⚡</span>
+            <a href="#contact" className="btn btn-secondary" style={{ padding: '1rem 2.5rem' }}>
+              <span>Get in Touch</span>
             </a>
           </motion.div>
 
@@ -193,8 +191,8 @@ export default function Hero() {
             transition={{ duration: 1, delay: 1.2 }}
           >
             {[
-              { num: "50+", label: "Projects Built" },
-              { num: "10K+", label: "Players Served" },
+              { num: "50+", label: "Servers Managed" },
+              { num: "10K+", label: "Active Users" },
               { num: "3+", label: "Years Exp." }
             ].map((stat, i) => (
               <motion.div 
@@ -230,7 +228,7 @@ export default function Hero() {
             <div className={styles.imageFrame}>
               <Image
                 src="/images/profile.png"
-                alt="Qxis - Profile"
+                alt="Profile"
                 fill
                 priority
                 sizes="(max-width: 768px) 100vw, 450px"
@@ -239,7 +237,6 @@ export default function Hero() {
               <div className={styles.imageOverlay} />
             </div>
             
-            {/* Floating tags with parallax */}
             <motion.div
               className={styles.floatingTag}
               style={{ top: "15%", right: "-10%", translateZ: 50 }}
@@ -250,7 +247,7 @@ export default function Hero() {
               transition={{ y: { duration: 4, repeat: Infinity, ease: "easeInOut" } }}
             >
               <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>⭐</span>
-              ERLC Alter
+              Community Manager
             </motion.div>
             
             <motion.div
@@ -276,13 +273,12 @@ export default function Hero() {
               transition={{ y: { duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 2 } }}
             >
               <span className="emoji" style={{ fontSize: '1.2rem', marginRight: '6px' }}>🛡️</span>
-              Server Mgr
+              Automation
             </motion.div>
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
         className={styles.scrollIndicator}
         initial={{ opacity: 0 }}

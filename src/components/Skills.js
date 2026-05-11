@@ -165,15 +165,14 @@ export default function Skills() {
           transition={{ duration: 0.6 }}
         >
           <span className="badge">
-            <span className="emoji" style={{ fontSize: '1rem', marginRight: '4px' }}>🔥</span>
-            Elite Arsenal
+            <span className="emoji" style={{ fontSize: '1rem', marginRight: '4px' }}>💻</span>
+            Skills & Tools
           </span>
           <h2>
-            My <span className="gradient-text">Tech Stack</span>
-            <br />&amp; Code Craft
+            Technical <span className="gradient-text">Stack</span>
           </h2>
           <p className={styles.sectionDesc}>
-            A glimpse into the tools I use daily and the code architectures I build.
+            Technologies and frameworks I work with on a daily basis.
           </p>
         </motion.div>
 

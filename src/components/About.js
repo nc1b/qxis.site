@@ -6,20 +6,20 @@ import styles from "./About.module.css";
 const highlights = [
   {
     emoji: "⭐",
-    title: "ERLC Alter",
-    desc: "Specialist in ERLC server alting — botting in-game servers to fill them to max capacity. Driving player counts up and keeping servers packed with active users around the clock.",
+    title: "Server Growth",
+    desc: "Scaling in-game server populations and driving community engagement through targeted strategies and automated systems.",
     gradient: "linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.05))"
   },
   {
     emoji: "🖥️",
-    title: "Server Manager",
-    desc: "Skilled in managing large-scale Roblox and Discord communities — building staff teams, robust moderation systems, and engaging player experiences.",
+    title: "Community Management",
+    desc: "Building staff teams, establishing moderation guidelines, and managing day-to-day operations for thousands of players.",
     gradient: "linear-gradient(135deg, rgba(139,92,246,0.1), rgba(6,182,212,0.05))"
   },
   {
     emoji: "💻",
-    title: "Full Stack Developer",
-    desc: "Building modern web and bot applications with Next.js, React, Node.js, Python, and MongoDB — from stunning frontend polish to backend power.",
+    title: "Full Stack Development",
+    desc: "Creating scalable web platforms and Discord bots using React, Next.js, Python, and MongoDB to streamline community operations.",
     gradient: "linear-gradient(135deg, rgba(6,182,212,0.1), rgba(59,130,246,0.05))"
   },
 ];
@@ -51,7 +51,6 @@ const Card = ({ highlight, index }) => {
   );
 };
 
-// Scroll Reveal Word Component (Bettina Sosa Effect)
 const Word = ({ children, progress, range }) => {
   const opacity = useTransform(progress, range, [0.15, 1]);
   return (
@@ -119,26 +118,23 @@ export default function About() {
           >
             <div className="badge">
               <span className={styles.badgePulse} />
-              About Me
+              About
             </div>
             <h2>
-              Crafting <span className="gradient-text">Digital Worlds</span>
-              <br />
-              From Vision to Reality
+              Background & <span className="gradient-text">Experience</span>
             </h2>
             
-            {/* Applied Bettina Sosa Scroll Reveal Effect */}
-            <ScrollRevealText text="I'm passionate about blending creativity with high-performance technology. Whether it's transforming an ERLC server into an immersive, max-capacity experience, managing a thriving community of thousands, or engineering scalable full-stack solutions — I bring dedication, precision, and elite expertise to every single project." />
+            <ScrollRevealText text="I specialize in building and scaling online communities, with a focus on ERLC servers and Discord infrastructure. My work ranges from developing custom moderation bots to engineering full-stack web applications that help communities operate more efficiently." />
             
             <div className={styles.experienceLine}>
               <div className={styles.expItem}>
-                <span className={styles.expNum}>100%</span>
-                <span className={styles.expText}>Commitment</span>
+                <span className={styles.expNum}>3+</span>
+                <span className={styles.expText}>Years Experience</span>
               </div>
               <div className={styles.expDivider} />
               <div className={styles.expItem}>
-                <span className={styles.expNum}>24/7</span>
-                <span className={styles.expText}>Uptime Goals</span>
+                <span className={styles.expNum}>10k+</span>
+                <span className={styles.expText}>Users Managed</span>
               </div>
             </div>
           </motion.div>

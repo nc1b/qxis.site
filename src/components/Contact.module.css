@@ -4,16 +4,17 @@
 }
 
 .wrapper {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .infoCol {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  width: 100%;
 }
 
 .availDot {
@@ -37,15 +38,15 @@
   font-size: 1.1rem;
   color: var(--text-secondary);
   line-height: 1.8;
-  max-width: 500px;
-  margin-bottom: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto 1.5rem auto;
 }
 
 .socialsGrid {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  max-width: 400px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .socialCard {
@@ -85,151 +86,14 @@
   color: var(--text-tertiary);
 }
 
-/* Form Column */
-.formCol {
-  position: relative;
-}
-
-.formCard {
-  padding: 3rem;
-  background: rgba(12, 9, 8, 0.8);
-  border-radius: 24px;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
-}
-
-.formHeader {
-  margin-bottom: 2.5rem;
-}
-
-.formHeader h3 {
-  font-size: 1.8rem;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.formHeader p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.8rem;
-}
-
-.inputGroup {
-  position: relative;
-}
-
-.input,
-.textarea {
-  width: 100%;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  padding: 1.2rem 1rem 0.6rem;
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  color: var(--text-primary);
-  transition: all var(--transition-fast);
-  outline: none;
-}
-
-.textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.inputGroup label {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  color: var(--text-muted);
-  font-size: 1rem;
-  pointer-events: none;
-  transition: all var(--transition-fast);
-}
-
-/* Floating label magic */
-.input:focus ~ label,
-.textarea:focus ~ label,
-.input:not(:placeholder-shown) ~ label,
-.textarea:not(:placeholder-shown) ~ label {
-  top: 0.4rem;
-  font-size: 0.75rem;
-  color: var(--sunset-400);
-  font-weight: 600;
-}
-
-.input:focus,
-.textarea:focus {
-  background: rgba(255,255,255,0.05);
-  border-color: rgba(217, 114, 40, 0.5);
-}
-
-.inputHighlight {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 0;
-  height: 2px;
-  background: var(--gradient-sunset);
-  transition: all var(--transition-medium);
-  transform: translateX(-50%);
-  border-radius: 2px;
-}
-
-.input:focus ~ .inputHighlight,
-.textarea:focus ~ .inputHighlight {
-  width: calc(100% - 2rem);
-}
-
-.submitBtn {
-  width: 100%;
-  justify-content: center;
-  padding: 1.2rem;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-}
-
-.submitBtn:disabled {
-  opacity: 0.7;
-  cursor: not-allowed;
-}
-
 @media (max-width: 968px) {
-  .wrapper {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
-  
-  .infoCol {
-    align-items: center;
-    text-align: center;
-  }
-  
   .socialsGrid {
-    width: 100%;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    max-width: none;
-  }
-  
-  .socialCard {
-    flex-direction: column;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
   }
 }
 
 @media (max-width: 600px) {
-  .formCard {
-    padding: 2rem 1.5rem;
-  }
   .socialsGrid {
-    grid-template-columns: 1fr;
-  }
-  .socialCard {
-    flex-direction: row;
-    text-align: left;
+    grid-template-columns: 1fr !important;
   }
 }
